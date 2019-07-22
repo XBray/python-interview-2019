@@ -13,6 +13,9 @@
    答案：
 
    ```
+   a1 = [('a', 1), ('b', 2), ('c', 3), ('d', 4)]
+   a2 = {1: 'item1', 3: 'item9'}
+   a3 = 6
    
    ```
 
@@ -28,6 +31,7 @@
    答案：
 
    ```
+   42
    
    ```
 
@@ -36,6 +40,20 @@
    答案：
 
    ```Python
+   def retry(func, max_times):
+    def call_func(*args, **kwargs):
+        for _ in range(max_times):
+            try:
+                result = func(*args, **kwargs)
+            except:
+                continue
+            if result:
+                break
+        else:
+            return '网络异常未能获取数据'
+        return result
+
+    return call_func
    
    ```
 
@@ -58,7 +76,9 @@
    答案：
 
    ```Python
-   
+   max_stock = max(prices, key=lambda x: prices[x])
+
+   {index: value for index, value in prices.items() if value > 100}
    ```
 
 5. 写一个函数，传入的参数是一个列表，如果列表中的三个元素`a`、`b`、`c`相加之和为`0`，就将这个三个元素组成一个三元组，最后该函数返回一个包含了所有这样的三元组的列表。例如：
@@ -70,6 +90,16 @@
    答案：
 
    ```Python
+   def tuple0(list_in):
+       list_out = []
+       length = len(list_in)
+       for i in range(length - 2):
+           for j in range(i+2, length):
+               if list_in[i] + list_in[i+1] + list_in[j] == 0:
+                   list_out.append((list_in[i], list_in[i+1], list_in[j]))
+       return list_out
+           
+
    
    ```
 
@@ -86,6 +116,19 @@
    答案：
 
    ```Python
+   def count_face(list_in):
+       num = 0
+       new_list = list_in
+       while new_list:
+           num += 1
+           temp_list = []
+           for item in new_list:
+               if isinstance(item, list):
+                   temp_list.extend(item)
+           new_list = temp_list
+               
+           
+
    
    ```
 
@@ -114,6 +157,7 @@
     答案：
 
     ```
+    python中变量名
     
     ```
 
@@ -141,6 +185,9 @@
     答案：
 
     ```SQL
+    select rq, count(shengfu)
+    from tb_result
+    group by rq, shengfu;
     
     ```
 
@@ -157,6 +204,9 @@
     答案：
 
     ```
+    Cookie存储在客户端,通常记录一个令牌, Session存储在服务端,通常用来存贮详细的数据
+    如在django中, 服务器将每个用户的身份具体信息存储在session中,并将对应的session_id
+    返回给浏览器的cookie,如此每次浏览器只要带上cookie,服务器就可以确认用户的身份
     
     ```
 
@@ -165,6 +215,8 @@
     答案：
 
     ```
+    django中,服务器收到用户输入的网址后,比对系统功能url,找到对应的view,在实行view前,依次执行预设的中间件request函数
+    然后执行对应的view函数,而后再次执行中间件对应的response的函数, 然后对对应的templates进行渲染,返回到浏览器
     
     ```
 
@@ -173,6 +225,7 @@
     答案：
 
     ```
+    HTTPS是安全套接字超文本传输协议,利用证书对数据进行加密传输
     
     ```
 
@@ -181,6 +234,7 @@
     答案：
 
     ```
+    遍历博主的订阅者, 依次推送博主的消息
     
     ```
 
@@ -189,6 +243,8 @@
     答案：
 
     ```
+    对于mysql数据库中经常查询的字段添加索引,
+    利用django中debugtoolbar工具条,查看实际的sql语句,优化ORM模型中的查询语句,避免不必要的查询以及n+1的查询问题
     
     ```
 
